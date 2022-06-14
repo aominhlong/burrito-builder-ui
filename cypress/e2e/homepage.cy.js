@@ -15,6 +15,14 @@ describe('Burrito Builder', () => {
         cy.get('.order').contains('Nothing selected')
     })
 
+    it('should be able to choose ingredients', () => {
+        cy.get('[name="beans"]').click()
+        cy.get('[name="pico de gallo"]').click()
+        cy.get('[name="cilantro"]').click()
+
+        cy.get('form > .order').contains('beans, pico de gallo, cilantro')
+    })
+
     it('should be able to see what is typed in the input field', () => {
         cy.get('input').type('Ni')
         cy.get('input').should('have.value', 'Ni')
