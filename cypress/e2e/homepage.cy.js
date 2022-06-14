@@ -15,6 +15,11 @@ describe('Burrito Builder', () => {
         cy.get('.order').contains('Nothing selected')
     })
 
+    it('should be able to see what is typed in the input field', () => {
+        cy.get('input').type('Ni')
+        cy.get('input').should('have.value', 'Ni')
+    })
+
     it('should be able to see all orders', () => {
         cy.get('section').children().should('have.length', 3)
         cy.get('section > :nth-child(1)').contains('Pat')
