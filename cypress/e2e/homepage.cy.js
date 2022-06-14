@@ -11,6 +11,13 @@ describe('Burrito Builder', () => {
         cy.get('[name="cilantro"]').contains('cilantro')
     })
 
+    it('should be able to see all orders', () => {
+        cy.get('section').children().should('have.length', 3)
+        cy.get('section > :nth-child(1)').contains('Pat')
+        cy.get('section > :nth-child(2)').contains('Sam')
+        cy.get('section > :nth-child(3)').contains('Alex')
+    })
+
     it('should start with no ingredients selected', () => {
         cy.get('.order').contains('Nothing selected')
     })
@@ -26,13 +33,6 @@ describe('Burrito Builder', () => {
     it('should be able to see what is typed in the input field', () => {
         cy.get('input').type('Ni')
         cy.get('input').should('have.value', 'Ni')
-    })
-
-    it('should be able to see all orders', () => {
-        cy.get('section').children().should('have.length', 3)
-        cy.get('section > :nth-child(1)').contains('Pat')
-        cy.get('section > :nth-child(2)').contains('Sam')
-        cy.get('section > :nth-child(3)').contains('Alex')
     })
 
     it('should be able to make a burrito after typing a name, choosing an ingredient, and hitting submit order', () => {
