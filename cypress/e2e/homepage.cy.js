@@ -11,6 +11,10 @@ describe('Burrito Builder', () => {
         cy.get('[name="cilantro"]').contains('cilantro')
     })
 
+    it('should start with no ingredients selected', () => {
+        cy.get('.order').contains('Nothing selected')
+    })
+
     it('should be able to see all orders', () => {
         cy.get('section').children().should('have.length', 3)
         cy.get('section > :nth-child(1)').contains('Pat')
@@ -18,7 +22,7 @@ describe('Burrito Builder', () => {
         cy.get('section > :nth-child(3)').contains('Alex')
     })
 
-    it('should be able to make a burrito after typing a name, choosing an agredient, and hitting submit order', () => {
+    it('should be able to make a burrito after typing a name, choosing an ingredient, and hitting submit order', () => {
 
         cy.intercept('POST', 'http://localhost:3001/api/v1/orders', { fixture: 'sendOrder.json' })
 
@@ -66,6 +70,5 @@ describe('Burrito Builder', () => {
         cy.get('section > :nth-child(2)').contains('Sam')
 
         cy.get('section').children().should('have.length', 2)
-
     })
 })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {getOrders} from '../../apiCalls';
+
+import './OrderForm.css'
 
 class OrderForm extends Component {
   constructor(props) {
@@ -20,7 +21,6 @@ class OrderForm extends Component {
 
   sendOrder = () => {
     if (this.state.name.length > 0 && this.state.ingredients.length > 0) {
-      console.log('hi')
       fetch('http://localhost:3001/api/v1/orders', {
         method: 'POST',
         headers: {
@@ -73,7 +73,7 @@ class OrderForm extends Component {
         />
 
         { ingredientButtons }
-        <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+        <p className='order'>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
         <p className='error-message'>{ this.state.error }</p>
         <button className='submit-btn' onClick={e => this.handleSubmit(e)}>
           Submit Order
